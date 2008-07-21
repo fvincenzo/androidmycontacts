@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+android:id="@+id/widget79"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<view
+   android:id="@+id/map"
+   class="com.google.android.maps.MapView"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   android:layout_weight="1" />
+>
+
+<AbsoluteLayout
+android:id="@+id/widget81"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+>
+<Button
+android:id="@+id/map_select"
+android:layout_width="300px"
+android:layout_height="40px"
+android:text="Select this location"
+android:textStyle="bold"
+android:layout_x="10px"
+android:layout_y="410px"
+>
+</Button>
+
+</AbsoluteLayout>
+<LinearLayout
+android:id="@+id/search_bar"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:visibility="invisible"
+>
+<EditText
+android:id="@+id/search_text"
+android:layout_width="250px"
+android:layout_height="wrap_content"
+android:textSize="18sp"
+android:layout_marginLeft="5px"
+
+>
+</EditText>
+<Button
+android:id="@+id/go_search"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="GO"
+android:textStyle="bold"
+
+>
+</Button>
+</LinearLayout>
+</FrameLayout>

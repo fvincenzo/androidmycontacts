@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="android.client">
+    <application android:label="@string/app_name" android:persistent="false" android:icon="@drawable/my_contacts">
+        <activity android:label="@string/app_name" android:name="MyContatsClient">
+            <intent-filter>
+               
+                <action android:name="android.client.action.LOGIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            <action android:name="android.intent.action.MAIN">
+</action></intent-filter>
+        </activity>
+	 <activity android:name="FriendsList">
+            <intent-filter>
+                <action android:name="android.client.action.PENDING" />
+                <action android:name="android.client.action.ALL_USERS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        	 <activity android:name="AddOneFriend">
+            <intent-filter>
+                <action android:name="android.client.action.ADD_A_FRIEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+         <activity android:label="@string/title_register" android:name="RegisterActivity">
+            <intent-filter>
+            	<action android:name="android.client.action.REGISTER" />
+                <action android:name="android.client.action.MODIFY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+	<activity android:label="@string/title_main_loop" android:name="MainLoopActivity">
+            <intent-filter>
+                <action android:name="android.client.action.MAIN_LOOP" />
+                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+<activity android:name="LocationSelection"> <intent-filter>
+                <action android:name="android.client.action.SELECT_LOCATION" />
+                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+
+</activity>
+        <activity android:label="@string/view_locations_title" android:name="ViewLocations"> <intent-filter>
+                <action android:name="android.client.action.VIEW_LOCATIONS" />
+                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+
+</activity>
+        
+        
+        <service android:process=":remote" android:name="MyContactService">
+            <intent-filter>
+             <action android:name="android.client.MY_SERVICE" />
+             <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+</application>
+<uses-permission android:name="android.permission.READ_CONTACTS">
+</uses-permission><uses-permission android:name="android.permission.WRITE_CONTACTS">
+</uses-permission><uses-permission android:name="android.permission.ADD_SYSTEM_SERVICE">
+</uses-permission><uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS">
+</uses-permission><uses-permission android:name="android.permission.ACCESS_CELL_ID">
+</uses-permission><uses-permission android:name="android.permission.ACCESS_GPS">
+</uses-permission><uses-permission android:name="android.permission.ACCESS_LOCATION">
+</uses-permission></manifest> 
