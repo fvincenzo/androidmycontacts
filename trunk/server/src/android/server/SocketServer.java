@@ -109,6 +109,13 @@ public class SocketServer extends Thread{
 										out.println(result);
 									}
 									else
+										if(command.firstElement().equals("GETNEWS") && command.size() > 0) {
+
+//											System.out.println("GETUSERS");
+											result = getNews();
+											out.println(result);
+										}
+										else
 										if(command.firstElement().equals("GETFRIENDS") && command.size() > 1) {
 
 //											System.out.println("GETFRIENDS");
@@ -252,8 +259,7 @@ public class SocketServer extends Thread{
 			}
 		}
 		return "Register ERROR.";
-	}
-
+	}	
 
 	/**
 	 * Effettua il login di un utente
@@ -599,6 +605,15 @@ public class SocketServer extends Thread{
 		}
 
 		return ret;
+	}
+	
+	public String getNews() {
+		
+		if(logged) {
+			return um.getNews();
+		} else {
+			return "Impossibile ritornare la lista delle News. ERROR";
+		}
 	}
 
 }	

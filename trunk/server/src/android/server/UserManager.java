@@ -162,6 +162,32 @@ public class UserManager {
 	public Set<String> getUsers() {
 		return users.keySet();
 	}
+	
+	/**
+	 * Ritorna la lista delle news ad un utente loggato
+	 * @return lista news
+	 */
+	public String getNews() {
+		
+		String s = null;
+		
+		// Eseguo una query sul database. La tabella si chiama Tbl.
+		Vector<String[]> v = db.eseguiQuery( "SELECT * FROM notizie;" );
+
+		// Stampiamo i risultati:
+		int i = 0;
+		while ( i<v.size() ) {
+		   String[] record = (String[]) v.elementAt(i);
+		   System.out.println("Record numero " + (i+1) );
+		   for (int j=0; j<record.length; j++) {
+		      s += record[j];
+		      s += "$";
+		   }
+		   i++;
+		}
+		
+		return s;
+	}
 
 	/**
 	 * Finalizza le modifiche agli utenti scrivendole su file. Da invocare dopo
