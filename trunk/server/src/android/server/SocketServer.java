@@ -64,6 +64,13 @@ public class SocketServer extends Thread{
 
 				System.out.println("Command: "+command);
 
+				if(command.firstElement().equals("STATUS")) {
+					
+					result = "OK";
+					out.println(result);
+
+
+				} else
 				if(command.firstElement().equals("REGISTER") && command.size() > 7) {
 
 					result = register(command.get(1),command.get(2),command.get(3),command.get(4),command.get(5),command.get(6),command.get(7));
