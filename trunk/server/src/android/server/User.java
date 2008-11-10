@@ -245,18 +245,12 @@ public class User  {
 	/**
 	 * Metodo richiamato dallo usermanager per salvare i dati dell'utente sul file degli utenti
 	 * 
-	 * @return Una stringa formattata contenente tutti i dati dell'utente
+	 * @return Un DBHelper formattata contenente tutti i dati dell'utente
 	 */
-	public String saveMe(){
-		return	uname+"\n"+
-				pwd+"\n"+
-				mobile+"\n"+
-				work+"\n"+
-				home+"\n"+
-				mail+"\n"+
-				im+"\n"+
-				geo+"\n"+
-				preferredMode+"\n";
+	public DBHelper saveMe(){
+		
+		DBHelper db = new DBHelper(uname,pwd,mobile,work,home,mail,im,geo,preferredMode);
+		return db;	
 
 
 	}
