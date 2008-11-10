@@ -169,10 +169,11 @@ public class UserManager {
 	 */
 	public String getNews() {
 		
-		String s = null;
+		String s="";
 		
-		// Eseguo una query sul database. La tabella si chiama Tbl.
-		Vector<String[]> v = db.eseguiQuery( "SELECT * FROM notizie;" );
+		// Eseguo una query sul database. La tabella si chiama notizie.
+		String query = "SELECT * FROM notizie ORDER BY id DESC";
+		Vector<String[]> v = db.eseguiQuery(query);
 
 		// Stampiamo i risultati:
 		int i = 0;
