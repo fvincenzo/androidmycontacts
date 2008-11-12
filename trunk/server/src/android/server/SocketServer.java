@@ -33,7 +33,7 @@ public class SocketServer extends Thread{
 	 * @param s Il socket su cui è stata accettata una connessione
 	 */
 	public SocketServer(Socket s) {
-		System.out.println("Android Contact Server ver 0.15 final");
+		System.out.println("Android Server ver 0.20 (with MySQL Support)");
 		clientSocket = s;
 
 	}
@@ -46,7 +46,7 @@ public class SocketServer extends Thread{
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 			//Server version
-			out.println("Android Contact Server ver 0.20 (with MySQL Support)");
+			out.println("Android Server ver 0.20 (with MySQL Support)");
 			//Server Welcome Message
 			out.println("Welcome in Darkstar Contact Server.");
 			//Server Status
