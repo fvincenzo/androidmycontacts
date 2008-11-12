@@ -110,7 +110,7 @@ public class PcClient {
 		    };
 		    
 		    MenuItem homeItem = new MenuItem("Set HOME as Preferred");
-		    imItem.addActionListener(homeListener);
+		    homeItem.addActionListener(homeListener);
 		    popup.add(homeItem);
 		    
 		    ActionListener workListener = new ActionListener() {
@@ -128,7 +128,7 @@ public class PcClient {
 		    };
 		    
 		    MenuItem workItem = new MenuItem("Set WORK as Preferred");
-		    imItem.addActionListener(workListener);
+		    workItem.addActionListener(workListener);
 		    popup.add(workItem);
 		    
 		    ActionListener mobileListener = new ActionListener() {
@@ -146,7 +146,7 @@ public class PcClient {
 		    };
 		    
 		    MenuItem mobileItem = new MenuItem("Set MOBILE as Preferred");
-		    imItem.addActionListener(mobileListener);
+		    mobileItem.addActionListener(mobileListener);
 		    popup.add(mobileItem);
 		    
 		    ActionListener disconnectListener = new ActionListener() {
