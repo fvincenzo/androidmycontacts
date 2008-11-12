@@ -18,7 +18,8 @@ public class PcClientAPI implements PcClientAPIInterface {
 	
 	private Socket kkSocket = null;
     private PrintWriter out = null;
-    private BufferedReader in = null;
+    @SuppressWarnings("unused")
+	private BufferedReader in = null;
     private String Host;
     private String Username;
 	private String Password;
@@ -39,6 +40,7 @@ public class PcClientAPI implements PcClientAPIInterface {
 			Host = i.readLine();
 			Username = i.readLine();
 			Password = i.readLine();
+			System.out.println("host:"+Host+"username:"+Username+"password:"+Password);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
