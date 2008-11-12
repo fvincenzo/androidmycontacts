@@ -95,6 +95,60 @@ public class PcClient {
 		    imItem.addActionListener(imListener);
 		    popup.add(imItem);
 		    
+		    ActionListener homeListener = new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		if(pcapi.home()) {
+			    		trayIcon.displayMessage("Android Contact PC Client", 
+			    		           "HOME Setted as Preferred!",
+			    		           TrayIcon.MessageType.INFO);
+		    		} else {
+		    			trayIcon.displayMessage("Android Contact PC Client", 
+			    		           "Connect Before!",
+			    		           TrayIcon.MessageType.ERROR);
+		    		}
+		    	}
+		    };
+		    
+		    MenuItem homeItem = new MenuItem("Set HOME as Preferred");
+		    imItem.addActionListener(homeListener);
+		    popup.add(homeItem);
+		    
+		    ActionListener workListener = new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		if(pcapi.work()) {
+			    		trayIcon.displayMessage("Android Contact PC Client", 
+			    		           "WORK Setted as Preferred!",
+			    		           TrayIcon.MessageType.INFO);
+		    		} else {
+		    			trayIcon.displayMessage("Android Contact PC Client", 
+			    		           "Connect Before!",
+			    		           TrayIcon.MessageType.ERROR);
+		    		}
+		    	}
+		    };
+		    
+		    MenuItem workItem = new MenuItem("Set WORK as Preferred");
+		    imItem.addActionListener(workListener);
+		    popup.add(workItem);
+		    
+		    ActionListener mobileListener = new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		if(pcapi.mobile()) {
+			    		trayIcon.displayMessage("Android Contact PC Client", 
+			    		           "MOBILE Setted as Preferred!",
+			    		           TrayIcon.MessageType.INFO);
+		    		} else {
+		    			trayIcon.displayMessage("Android Contact PC Client", 
+			    		           "Connect Before!",
+			    		           TrayIcon.MessageType.ERROR);
+		    		}
+		    	}
+		    };
+		    
+		    MenuItem mobileItem = new MenuItem("Set MOBILE as Preferred");
+		    imItem.addActionListener(mobileListener);
+		    popup.add(mobileItem);
+		    
 		    ActionListener disconnectListener = new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		pcapi.disconnect();
