@@ -1,11 +1,5 @@
 package android.server;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -36,15 +30,13 @@ public class UserManager {
 
 	private UserManager() {
 
-		db = new Database("localhost", "news", "root", "");
+		db = new Database("localhost", "news", "agiamminonni", "paciarot");
 		if (!db.connetti()) {
 			System.out.println("Errore durante la connessione.");
 			System.out.println(db.getErrore());
 			System.exit(0);
 		}
 
-		FileReader usersFis = null;
-		BufferedReader usersIn = null;
 		try {
 			// Eseguo una query sul database. La tabella si chiama Tbl.
 			Vector<String[]> v = db.eseguiQuery("SELECT * FROM users;");

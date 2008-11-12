@@ -80,7 +80,7 @@ public class Database {
       try {
          Statement stmt = db.createStatement();     // Creo lo Statement per l'esecuzione della query
          ResultSet rs = stmt.executeQuery(query);   // Ottengo il ResultSet dell'esecuzione della query
-         v = new Vector();
+         v = new Vector<String[]>();
          ResultSetMetaData rsmd = rs.getMetaData();
          colonne = rsmd.getColumnCount();
 
@@ -100,11 +100,11 @@ public class Database {
    // query: una stringa che rappresenta un'istuzione SQL di tipo UPDATE da eseguire
    // ritorna TRUE se l'esecuzione è adata a buon fine, FALSE se c'è stata un'eccezione
    public boolean eseguiAggiornamento(String query) {
-      int numero = 0;
       boolean risultato = false;
       try {
          Statement stmt = db.createStatement();
-         numero = stmt.executeUpdate(query);
+         @SuppressWarnings("unused")
+         int numero = stmt.executeUpdate(query);
          risultato = true;
          stmt.close();
       } catch (Exception e) {
