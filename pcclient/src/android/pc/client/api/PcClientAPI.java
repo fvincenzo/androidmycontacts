@@ -100,6 +100,54 @@ public class PcClientAPI implements PcClientAPIInterface {
 	}
 	
 	/**
+	 * Metodo home consente di settare l'home come preferita su AndroidContactServer
+	 */
+	public boolean home() {
+		
+		if(connected == 1) {
+			out.println("SETPREFERRED");
+			out.println(Username);
+			out.println("HOME");
+			out.println("END");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Metodo work consente di settare il work come preferita su AndroidContactServer
+	 */
+	public boolean work() {
+		
+		if(connected == 1) {
+			out.println("SETPREFERRED");
+			out.println(Username);
+			out.println("WORK");
+			out.println("END");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Metodo mobile consente di settare il mobile come preferita su AndroidContactServer
+	 */
+	public boolean mobile() {
+		
+		if(connected == 1) {
+			out.println("SETPREFERRED");
+			out.println(Username);
+			out.println("MOBILE");
+			out.println("END");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Metodo Disconnect consente la disconnessione ad un AndroidContactServer
 	 */
 	public void disconnect(){

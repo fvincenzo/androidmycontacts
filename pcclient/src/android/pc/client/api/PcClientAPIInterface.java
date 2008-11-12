@@ -11,6 +11,12 @@ public interface PcClientAPIInterface {
 	public abstract boolean mail();
 
 	public abstract boolean im();
+	
+	public abstract boolean home();
+	
+	public abstract boolean work();
+	
+	public abstract boolean mobile();
 
 	public abstract void disconnect();
 
