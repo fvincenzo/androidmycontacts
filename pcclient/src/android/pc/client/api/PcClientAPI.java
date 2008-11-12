@@ -40,7 +40,7 @@ public class PcClientAPI implements PcClientAPIInterface {
 			Host = i.readLine();
 			Username = i.readLine();
 			Password = i.readLine();
-			System.out.println("host:"+Host+"username:"+Username+"password:"+Password);
+//			System.out.println("host:"+Host+"username:"+Username+"password:"+Password);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
