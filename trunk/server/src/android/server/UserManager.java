@@ -96,7 +96,7 @@ public class UserManager {
 		}
 
 		for (User u : users.values()) {
-			u.load();
+			u.load(db);
 		}
 
 	}
