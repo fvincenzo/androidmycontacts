@@ -83,7 +83,7 @@ public class UserManager {
 			int i = 0;
 			while (i < v.size()) {
 				String[] record = (String[]) v.elementAt(i);
-				System.out.println("Record numero " + (i + 1));
+//				System.out.println("Record numero " + (i + 1));
 				User u = new User(record[3], record[4], record[8], record[10],
 						record[9], record[6], record[11], record[12],
 						record[13]);
@@ -101,6 +101,60 @@ public class UserManager {
 
 	}
 
+	/**
+	 * Richiamata periodicamente esegue l'update della lista locale
+	 */
+	public void update() {
+		
+		try {
+			// Eseguo una query sul database. La tabella si chiama Tbl.
+			Vector<String[]> v = db.eseguiQuery("SELECT * FROM users;");
+
+			// Stampiamo i risultati:
+			int i = 0;
+			while (i < v.size()) {
+				String[] record = (String[]) v.elementAt(i);
+//				System.out.println("Record numero " + (i + 1));
+				User u = new User(record[3], record[4], record[8], record[10],
+						record[9], record[6], record[11], record[12],
+						record[13]);
+				users.put(record[3], u);
+				i++;
+			}
+		} catch (Exception ex) {
+			System.out.println("No database found. Creating a new one...");
+
+		}
+
+		for (User u : users.values()) {
+			u.load(db);
+		}
+		
+		//Avvio aggiornamento periodico
+		RunTask upd = new RunTask();
+		Thread tup = new Thread(upd);
+		tup.start();
+		
+	}
+	
+	/**
+	 * Classe interna che si occupa dell'aggiornamento dei dati locali periodicamente
+	 * @author Vincenzo Frascino
+	 *
+	 */
+	class RunTask implements Runnable {
+		  public void run() {
+			update();
+			try {
+				//Aggiornamento avviene ogni 5 minuti
+				Thread.sleep(300000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  }
+	}
+	
 	/**
 	 * Metodo statico per ottenere l'istanaz della classe UserManager.
 	 * 
