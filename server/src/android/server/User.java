@@ -61,6 +61,7 @@ public class User  {
 	private Set<String> pendings = new HashSet<String>();
 	private Object pendingsLock = new Object();
 	private Object friendsLock = new Object();
+	private Database db;
 
 	/**
 	 * Costruttore della classe User
@@ -97,40 +98,41 @@ public class User  {
 	 * trova in: nomeutente.spnd
 	 *
 	 */
-	public void load() {
+	public void load(Database db) {
 
+		this.db = db;
+		
 		try
 		{
-			FileReader friendsFis = null;
-			BufferedReader friendsIn = null;
-			friendsFis = new FileReader("users/"+getUser()+".sfrn");
-			friendsIn = new BufferedReader(friendsFis);
-			String friend = friendsIn.readLine();
-			while (friend != null){
-				friends.add(friend);
-				friend = friendsIn.readLine();
+			
+			// Eseguo una query sul database. La tabella si chiama friends.
+			Vector<String[]> v = db.eseguiQuery("SELECT friend FROM friends WHERE user='"+getUser()+"';");
+			
+			// Salvo i risultati in memoria locale:
+			int i = 0;
+			while (i < v.size()) {
+				String[] friend = (String[]) v.elementAt(i);
+				friends.add(friend[0]);
+				i++;
 			}
-
-			friendsIn.close();
-			friendsFis.close();
-		} catch (IOException e) {
+			
+		} catch (Exception e) {
 		}
 		try {
-			FileReader pendingsFis = null;
-			BufferedReader pendingsIn = null;
-
-			pendingsFis = new FileReader("users/"+getUser()+".spnd");
-			pendingsIn = new BufferedReader(pendingsFis);
-			String pending = pendingsIn.readLine();
-			while (pending != null){
-				pendings.add(pending);
-				pending = pendingsIn.readLine();
+			
+			// Eseguo una query sul database. La tabella si chiama pendings.
+			Vector<String[]> v = db.eseguiQuery("SELECT pending FROM pendings WHERE user='"+getUser()+"';");
+			
+			// Salvo i risultati in memoria locale:
+			int i = 0;
+			while (i < v.size()) {
+				String[] pending = (String[]) v.elementAt(i);
+				friends.add(pending[0]);
+				i++;
 			}
-			pendingsIn.close();
-			pendingsFis.close();
 
 		}
-		catch (IOException e){
+		catch (Exception e){
 
 		}
 	}
@@ -156,13 +158,16 @@ public class User  {
 			friends.add(f);
 
 			try {
-				PrintWriter friends_out = new PrintWriter(new FileOutputStream("users/"+getUser()+".sfrn"), true);
-
-				friends_out.append(f+"\n");
-				friends_out.flush();
-				friends_out.close();
+				
+				String query = "INSERT INTO friends(user,friend) VALUES ('"+getUser()+"','"+f+"');";
+				boolean b = db.eseguiAggiornamento(query);
+				if(b==true) {
+					System.out.println(query);
+					removePenginds(f);
+				}
+					
 			}
-			catch (IOException e){
+			catch (Exception e){
 			}
 
 		}
@@ -180,13 +185,12 @@ public class User  {
 			pendings.add(pen);
 
 			try {
-				PrintWriter pendings_out = new PrintWriter(new FileOutputStream("users/"+getUser()+".spnd"), true);
-
-				pendings_out.append(pen+"\n");
-				pendings_out.flush();
-				pendings_out.close();
-			}
-			catch (IOException e){
+				
+				String query = "INSERT INTO pendings(user,pending) VALUES ('"+getUser()+"','"+pen+"');";
+				boolean b = db.eseguiAggiornamento(query);
+				if(b==true) System.out.println(query);			
+			
+			} catch (Exception e){
 
 			}
 		}
@@ -202,15 +206,12 @@ public class User  {
 
 			try {
 				pendings.remove(pen);
-				File pendings = new File("users/"+getUser()+".spnd");
-				pendings.delete();
-				PrintWriter pendings_out = new PrintWriter(new FileOutputStream("users/"+getUser()+".spnd"), true);
-				for (String s: this.pendings){
-					pendings_out.println(s);
-				}
-				pendings_out.flush();
-				pendings_out.close();
-			} catch (IOException e){
+				
+				String query = "DELETE FROM pendings WHERE user='"+getUser()+"',pending='"+pen+"';";
+				boolean b = db.eseguiAggiornamento(query);
+				if(b==true) System.out.println(query);	
+				
+			} catch (Exception e){
 				e.printStackTrace();
 			}
 		}
