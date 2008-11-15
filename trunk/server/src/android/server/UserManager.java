@@ -1,5 +1,9 @@
 package android.server;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -30,7 +34,41 @@ public class UserManager {
 
 	private UserManager() {
 
-		db = new Database("localhost", "news", "agiamminonni", "paciarot");
+		//Leggo la figurazione del server da file (conf/config.ini)
+		FileReader configFis = null;
+		@SuppressWarnings("unused")
+		BufferedReader configIn = null;
+		try {
+			configFis = new FileReader("conf/config.ini");
+			configIn = new BufferedReader(configFis);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String host = null;
+		String user = null;
+		String pwd = null;
+		
+		try {
+			host = configIn.readLine();
+			user = configIn.readLine();
+			pwd = configIn.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			configIn.close();
+			configFis.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Inizializzo il db
+		db = new Database(host, "news", user, pwd);
 		if (!db.connetti()) {
 			System.out.println("Errore durante la connessione.");
 			System.out.println(db.getErrore());
