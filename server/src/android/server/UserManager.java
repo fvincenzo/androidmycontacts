@@ -99,6 +99,11 @@ public class UserManager {
 			u.load(db);
 		}
 
+		//Avvio aggiornamento periodico
+		RunTask upd = new RunTask();
+		Thread tup = new Thread(upd);
+		tup.start();
+		
 	}
 
 	/**
@@ -133,11 +138,6 @@ public class UserManager {
 		for (User u : users.values()) {
 			u.load(db);
 		}
-		
-		//Avvio aggiornamento periodico
-		RunTask upd = new RunTask();
-		Thread tup = new Thread(upd);
-		tup.start();
 		
 	}
 	
