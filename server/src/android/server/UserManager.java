@@ -107,6 +107,10 @@ public class UserManager {
 	public void update() {
 		
 		try {
+			
+			//Reload the list
+			users.clear();
+			
 			// Eseguo una query sul database. La tabella si chiama Tbl.
 			Vector<String[]> v = db.eseguiQuery("SELECT * FROM users;");
 
