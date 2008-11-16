@@ -147,6 +147,7 @@ public class UserManager {
 	 */
 	class RunTask implements Runnable {
 		  public void run() {
+			//System.out.println("Thread Started: true");
 			update();
 			try {
 				//Aggiornamento avviene ogni 5 minuti
