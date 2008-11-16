@@ -112,8 +112,8 @@ public class UserManager {
 		
 		try {
 			
-			//Reload the list
-			users.clear();
+			//Ricarica la lista degli utenti
+			if(!users.isEmpty()) users.clear();
 			
 			// Eseguo una query sul database. La tabella si chiama Tbl.
 			Vector<String[]> v = db.eseguiQuery("SELECT * FROM users;");

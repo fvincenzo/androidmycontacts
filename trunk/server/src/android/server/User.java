@@ -94,7 +94,13 @@ public class User  {
 	 */
 	public void load(Database db) {
 
+		//Assegno il controllo sul database
 		this.db = db;
+		
+		//Pulisco le liste se mi trovo in un ciclo diverso dal primo, 
+		//mi serve per non avere duplicati dopo il primo lancio di load
+		if(!friends.isEmpty()) friends.clear();
+		if(!pendings.isEmpty()) pendings.clear();
 		
 		try
 		{
