@@ -36,7 +36,6 @@ public class UserManager {
 
 		//Leggo la figurazione del server da file (conf/config.ini)
 		FileReader configFis = null;
-		@SuppressWarnings("unused")
 		BufferedReader configIn = null;
 		try {
 			configFis = new FileReader("conf/config.ini");
