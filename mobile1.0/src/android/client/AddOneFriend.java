@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -53,14 +54,14 @@ public class AddOneFriend extends Activity implements OnClickListener, ServiceCo
 				try {
 					String u = username.getText().toString();
 					if (service.addFriend(u)){
-						AlertDialog.show(this, "OK", 0, "User "+u+" added to your pending list", "OK",false);
+						AlertD.show(this, "OK", 0, "User "+u+" added to your pending list", "OK",false);
 						username.setText("");
 					}
 					else {
-						AlertDialog.show(this, "Error", 0, "Impossible to add user "+u, "OK",false);
+						AlertD.show(this, "Error", 0, "Impossible to add user "+u, "OK",false);
 						
 					}
-				}catch (DeadObjectException e){
+				}catch (RemoteException e){
 
 				}
 			}

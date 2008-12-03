@@ -6,6 +6,7 @@ import java.util.List;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.DeadObjectException;
+import android.os.RemoteException;
 import android.util.Log;
 import java.lang.Math;
 
@@ -74,7 +75,8 @@ public class GPSThread extends Thread {
 					List<DBHelper.Location> location = db.fetchAllRows();
 
 					//Prendo la mia posizione gps dal locationa Manager
-					this.myLocation = (Location)myLocationManager.getCurrentLocation("gps");
+					this.myLocation = (Location)myLocationManager.getLastKnownLocation("gps");
+					
 
 					DecimalFormat df = new DecimalFormat("#00.000000");
 
@@ -131,7 +133,7 @@ public class GPSThread extends Thread {
 
 			} catch (InterruptedException e) {
 
-			} catch (DeadObjectException e) {
+			} catch (RemoteException e) {
 
 			} 
 
