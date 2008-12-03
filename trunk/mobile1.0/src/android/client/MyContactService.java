@@ -453,10 +453,10 @@ public class MyContactService extends Service {
 			Integer person_id = null;
 
 			Cursor personId = getContentResolver().query(Contacts.People.CONTENT_URI, new String[] { BaseColumns._ID },  "name='"+name_s+"'", null, null);
-			while (personId.next()){
+			while (personId.moveToNext()){
 
 				Cursor curPersonId = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, new String[] { Contacts.ContactMethods.PERSON_ID },  "person="+personId.getInt(personId.getColumnIndex(BaseColumns._ID))+" AND kind="+500, null, null);
-				if (curPersonId.next()) {
+				if (curPersonId.moveToNext()) {
 					person_id = curPersonId.getInt(curPersonId.getColumnIndex(Contacts.ContactMethods.PERSON_ID));
 					break;
 				}
@@ -469,19 +469,19 @@ public class MyContactService extends Service {
 						Contacts.Phones.NUMBER
 				};
 				Cursor c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.MOBILE_TYPE+" AND person="+person_id, null, null);
-				if (c.next()){
+				if (c.moveToNext()){
 					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), mobile_s);
 					c.commitUpdates();
 				}
 
 				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.HOME_TYPE+" AND person="+person_id, null, null);
-				if (c.next()){
+				if (c.moveToNext()){
 					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), home_s);
 					c.commitUpdates();
 				}
 
 				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.WORK_TYPE+" AND person="+person_id, null, null);
-				if (c.next()){
+				if (c.moveToNext()){
 					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), work_s);
 					c.commitUpdates();
 				}
@@ -491,19 +491,19 @@ public class MyContactService extends Service {
 						Contacts.ContactMethods.DATA
 				};
 				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "label='Mail' AND person="+person_id, null, null);
-				if (c.next()){
+				if (c.moveToNext()){
 					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), email_s);
 					c.commitUpdates();
 				}
 
 				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "label='Messenger' AND person="+person_id, null, null);
-				if (c.next()){
+				if (c.moveToNext()){
 					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), im_s);
 					c.commitUpdates();
 				}
 
 				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "kind="+ContactMethods.POSTAL_KIND+" AND person="+person_id, null, null);
-				if (c.next()){
+				if (c.moveToNext()){
 					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), pos_s);
 					c.commitUpdates();
 				}
@@ -617,13 +617,13 @@ public class MyContactService extends Service {
 					android.provider.Contacts.People.PREFERRED_EMAIL_ID
 			};
 			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.next()){
+			if (user.moveToNext()){
 				String[] projection2 = new String[] {
 						android.provider.BaseColumns._ID
 				};
 				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
 				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.HOME_TYPE+"'", null, null);
-				if (tel.next()){
+				if (tel.moveToNext()){
 					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
 					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
 					return user.commitUpdates();
@@ -643,13 +643,13 @@ public class MyContactService extends Service {
 					android.provider.Contacts.People.PREFERRED_EMAIL_ID
 			};
 			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.next()){
+			if (user.moveToNext()){
 				String[] projection2 = new String[] {
 						android.provider.BaseColumns._ID
 				};
 				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
 				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.MOBILE_TYPE+"'", null, null);
-				if (tel.next()){
+				if (tel.moveToNext()){
 					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
 					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
 					return user.commitUpdates();
@@ -668,13 +668,13 @@ public class MyContactService extends Service {
 					android.provider.Contacts.People.PREFERRED_EMAIL_ID
 			};
 			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.next()){
+			if (user.moveToNext()){
 				String[] projection2 = new String[] {
 						android.provider.BaseColumns._ID
 				};
 				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
 				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.WORK_TYPE+"'", null, null);
-				if (tel.next()){
+				if (tel.moveToNext()){
 					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
 					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
 					return user.commitUpdates();
@@ -691,13 +691,13 @@ public class MyContactService extends Service {
 					android.provider.Contacts.People.PREFERRED_EMAIL_ID
 			};
 			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.next()){
+			if (user.moveToNext()){
 				String[] projection2 = new String[] {
 						android.provider.BaseColumns._ID
 				};
 				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
 				Cursor mail = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND label='Messenger'", null, null);
-				if (mail.next()){
+				if (mail.moveToNext()){
 					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_EMAIL_ID), mail.getInt(mail.getColumnIndex(BaseColumns._ID)));
 					user.updateString(user.getColumnIndex(Contacts.People.NOTES), "Best contact with IM");
 
@@ -717,13 +717,13 @@ public class MyContactService extends Service {
 					android.provider.Contacts.People.PREFERRED_EMAIL_ID
 			};
 			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.next()){
+			if (user.moveToNext()){
 				String[] projection2 = new String[] {
 						android.provider.BaseColumns._ID
 				};
 				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
 				Cursor mail = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND label='Mail'", null, null);
-				if (mail.next()){
+				if (mail.moveToNext()){
 					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_EMAIL_ID), mail.getInt(mail.getColumnIndex(BaseColumns._ID)));
 					user.updateString(user.getColumnIndex(Contacts.People.NOTES), "Best contact with email");
 
@@ -774,14 +774,14 @@ public class MyContactService extends Service {
 					android.provider.BaseColumns._ID
 			};
 			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.next()){
+			if (user.moveToNext()){
 				String[] projection2 = new String[] {
 						android.provider.BaseColumns._ID,
 						android.provider.Contacts.ContactMethods.DATA
 				};
 				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
 				Cursor geo = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND kind="+Contacts.ContactMethods.POSTAL_KIND, null, null);
-				if (geo.next()){
+				if (geo.moveToNext()){
 					geo.updateString(geo.getColumnIndex(Contacts.ContactMethods.DATA), position);
 					return geo.commitUpdates();
 				}

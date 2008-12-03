@@ -113,7 +113,7 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 						removeEntry(selected);						
 					}
 					
-				} catch (DeadObjectException e) {
+				} catch (RemoteException e) {
 					
 				}
 			}
@@ -121,7 +121,7 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 				try {
 					s.denyFriend(selected);
 					removeEntry(selected);
-				} catch (DeadObjectException e) {
+				} catch (RemoteException e) {
 					
 				}
 			}
@@ -130,13 +130,13 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 			if (which == DialogInterface.BUTTON1){
 				try {
 					if (s.addFriend(selected)){
-						AlertDialog.show(this, "OK", 0, selected+" received a request to become your friend", "OK",false);
+						AlertD.show(this, "OK", 0, selected+" received a request to become your friend", "OK",false);
 						removeEntry(selected);
 					}
 					else {
-						AlertDialog.show(this, "ERROR", 0, "Unable to perform the request", "OK",false);
+						AlertD.show(this, "ERROR", 0, "Unable to perform the request", "OK",false);
 					}
-				} catch (DeadObjectException e) {
+				} catch (RemoteException e) {
 					
 					e.printStackTrace();
 				}
@@ -174,7 +174,7 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 				for(String str: s.pendingFriends()){
 					v.add(str);
 				}
-			} catch (DeadObjectException e) {
+			} catch (RemoteException e) {
 				
 			}
 		}
@@ -184,7 +184,7 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 				for(String str: s.getUsers()){
 					if (!friends.contains(str)) v.add(str);
 				}
-			} catch (DeadObjectException e) {
+			} catch (RemoteException e) {
 				
 			}
 		}
