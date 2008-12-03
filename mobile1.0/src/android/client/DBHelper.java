@@ -3,7 +3,8 @@ package android.client;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
-import com.google.android.maps.Point;
+
+import com.google.android.maps.GeoPoint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -83,13 +84,13 @@ public class DBHelper {
 
 		try {
 			db = ctx.openOrCreateDatabase(DATABASE_NAME, 0, null);
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			try {
 				
 				db.execSQL(DATABASE_CREATE);
 
 
-			} catch (FileNotFoundException e1) {
+			} catch (Exception e1) {
 				Log.e(LOGGER, e1.toString());
 				db = null;
 			}
@@ -123,7 +124,7 @@ public class DBHelper {
 	 * 
 	 * @return true se ha successo false altrimenti
 	 */
-	public boolean addLocation(Point p, String address, String type) {
+	public boolean addLocation(GeoPoint p, String address, String type) {
 
 		String selection[] = new String[] {
 				"_id"
