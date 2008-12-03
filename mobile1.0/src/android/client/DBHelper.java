@@ -82,12 +82,10 @@ public class DBHelper {
 	public DBHelper(Context ctx) {
 
 		try {
-			db = ctx.openDatabase(DATABASE_NAME, null);
+			db = ctx.openOrCreateDatabase(DATABASE_NAME, 0, null);
 		} catch (FileNotFoundException e) {
 			try {
-				db =
-					ctx.createDatabase(DATABASE_NAME, DATABASE_VERSION, 0,
-							null);
+				
 				db.execSQL(DATABASE_CREATE);
 
 
@@ -132,7 +130,7 @@ public class DBHelper {
 		};
 		Cursor c = db.query(DATABASE_TABLE, selection, 
 				"latitude="+p.getLatitudeE6() +" AND longitude="+p.getLongitudeE6(), null, null, null, null);
-		if (c.count() == 0) {
+		if (c.getCount() == 0) {
 			ContentValues initialValues = new ContentValues();
 			initialValues.put("address", address);
 			initialValues.put("latitude", p.getLatitudeE6());
@@ -163,7 +161,7 @@ public class DBHelper {
 		pref.put("preferred", type);
 		
 		Cursor c = db.query(DATABASE_TABLE, selection, "defaultFlag=1", null, null, null, null);
-		if (c.count() > 0) {			
+		if (c.getCount() > 0) {			
 			db.update(DATABASE_TABLE, pref, "defaultFlag=1", null);
 		}
 		else {
@@ -182,8 +180,8 @@ public class DBHelper {
 	public String getDefault(){
 
 		Cursor c = db.query(true, DATABASE_TABLE, new String[] {
-		"preferred"},"defaultFlag=1", null, null, null, null);
-		if (c.first()) {
+		"preferred"},"defaultFlag=1", null, null, null, null,null);
+		if (c.moveToFirst()) {
 			return c.getString(0);
 		} 
 		return "MOBILE";
@@ -199,8 +197,8 @@ public class DBHelper {
 		Location row;
 
 		Cursor c = db.query(true, DATABASE_TABLE, new String[] {
-				"_id",  "latitude", "longitude","preferred","address", "defaultFlag"},"defaultFlag=0", null, null, null, null);
-		while (c.next()) {
+				"_id",  "latitude", "longitude","preferred","address", "defaultFlag"},"defaultFlag=0", null, null, null, null,null);
+		while (c.moveToNext()) {
 			row = new Location();
 			row._id = c.getLong(0);
 			row.latitude = c.getInt(1);

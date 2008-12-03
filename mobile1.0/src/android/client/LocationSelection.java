@@ -484,10 +484,4 @@ public class LocationSelection extends MapActivity implements OnClickListener{
 
 		}
 	}
-
-	@Override
-	protected boolean isRouteDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
