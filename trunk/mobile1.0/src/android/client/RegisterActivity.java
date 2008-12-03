@@ -93,10 +93,10 @@ public class RegisterActivity extends Activity implements OnClickListener , Serv
 						finish();
 					}
 					else {
-						AlertDialog.show(this, "Error", 0, "Error occurred while registering user:\n"+u, "OK", false);
+						AlertD.show(this, "Error", 0, "Error occurred while registering user:\n"+u, "OK", false);
 					}
 				}catch (Exception ex){
-					AlertDialog.show(this, "Exception", 0, "Exception occurred while registering user", "OK", false);
+					AlertD.show(this, "Exception", 0, "Exception occurred while registering user", "OK", false);
 				}
 			}
 			if (status == MODIFY) {
@@ -106,10 +106,10 @@ public class RegisterActivity extends Activity implements OnClickListener , Serv
 							finish();
 						}
 						else {
-							AlertDialog.show(this, "Error", 0, " Error occurred while modifying your data", "BACK",false);							
+							AlertD.show(this, "Error", 0, " Error occurred while modifying your data", "BACK",false);							
 						}
 						
-					} catch (DeadObjectException e) {
+					} catch (RemoteException e) {
 			
 					}
 				}
@@ -218,7 +218,7 @@ public class RegisterActivity extends Activity implements OnClickListener , Serv
 					finish();
 				}
 				else{
-					AlertDialog.show(callback, "Error", 0, "Wrong password inserted", "BACK",false);
+					AlertD.show(callback, "Error", 0, "Wrong password inserted", "BACK",false);
 					
 				}
 			}

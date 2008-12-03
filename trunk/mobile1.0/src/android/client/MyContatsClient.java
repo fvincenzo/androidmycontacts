@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -43,7 +44,7 @@ public class MyContatsClient extends Activity implements OnClickListener, Servic
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		startService(new Intent("android.client.MY_SERVICE"), null);
+		startService(new Intent("android.client.MY_SERVICE"));
 		bindService(new Intent("android.client.MY_SERVICE"),this, 0);
 
 	}
@@ -69,15 +70,15 @@ public class MyContatsClient extends Activity implements OnClickListener, Servic
 						finish();
 					}
 					else {
-						AlertDialog.show(this, "Error", 0, "Error occurred while logging in. Check your data or try later", "BACK",false);
+						AlertD.show(this, "Error", 0, "Error occurred while logging in. Check your data or try later", "BACK",false);
 					}
 				}catch (Exception e){
-					AlertDialog.show(this, "Error", 0, "Error occurred while connecting to server.", "BACK",false);
+					AlertD.show(this, "Error", 0, "Error occurred while connecting to server.", "BACK",false);
 				}
 			}
 			else 
 			{
-				AlertDialog.show(this, "Errore", 0, "Please fill in the username and the password field", "BACK",false);
+				AlertD.show(this, "Errore", 0, "Please fill in the username and the password field", "BACK",false);
 			}
 		}
 		if (arg0 == register){
@@ -105,7 +106,7 @@ public class MyContatsClient extends Activity implements OnClickListener, Servic
 				login.setOnClickListener(this);
 				register.setOnClickListener(this);
 			}
-		}catch (DeadObjectException e){
+		}catch (RemoteException e){
 
 		}
 	}

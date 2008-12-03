@@ -28,6 +28,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -154,7 +155,7 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 			if (mState == PENDING) {
 				try {
 					s.setNormalStatus();
-				} catch (DeadObjectException e) {
+				} catch (RemoteException e) {
 					
 				}
 			}
@@ -194,7 +195,7 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 		}
 		else {
 			if (mState == ALL_USERS)
-				AlertDialog.show(this, "No more users", 0, "All the users are already in your friends list", "OK",false);
+				AlertD.show(this, "No more users", 0, "All the users are already in your friends list", "OK",false);
 			startActivity(new Intent(MainLoopActivity.MAIN_LOOP_ACTION, getIntent().getData()));
 			finish();
 		}

@@ -3,6 +3,7 @@ package android.client;
 import java.util.HashMap;
 import java.util.Map;
 import android.os.DeadObjectException;
+import android.os.RemoteException;
 import android.util.Log;
 
 /**
@@ -85,7 +86,7 @@ public class CyclicChecks extends Thread {
 			catch (InterruptedException e) {
 
 			}
-			catch (DeadObjectException e){
+			catch (RemoteException e){
 
 			}
 		}
@@ -123,7 +124,7 @@ public class CyclicChecks extends Thread {
 								Log.v("CheckPreferredMode", "Devo settare IM ---");
 								service.setIm(friend);
 							}
-		}catch (DeadObjectException e){
+		}catch (RemoteException e){
 
 		}
 	}

@@ -51,7 +51,7 @@ public class MainLoopActivity extends Activity implements OnClickListener, Servi
 		}
 		
 		if (arg0 == start){
-			startService(new Intent("android.client.MY_SERVICE"), null);
+			startService(new Intent("android.client.MY_SERVICE"));
 			start.setVisibility(View.INVISIBLE);
 			notRunningLabel.setVisibility(View.INVISIBLE);
 			stop.setVisibility(View.VISIBLE);
