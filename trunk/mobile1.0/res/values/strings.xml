@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Contacts</string>
+    <string name="title_pending_friends">Pending Friends List</string>
+    <string name="all_users">System users</string>
+    <string name="title_register">Register</string>
+    <string name="title_main_loop">What do you want to do?</string>
+    <string name="local_service_started">My Contacts started</string>
+    <string name="local_service_stopped">My Contacts stopped</string>
+    <string name="local_service_connected">My Contacts connected</string>
+    <string name="local_service_disconnected">My Contacts disconnected</string>
+    <string name="local_service_pendings">One or more pending friends</string>
+    <string name="local_service_running">My Contacts is running</string>
+    <string name="view_locations_title">Locations currently inserted:</string>
+    <string name="map_overlay_own_name">Me</string> 
+    
+</resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<Button
+android:id="@+id/findFriends"
+android:layout_width="190px"
+android:layout_height="wrap_content"
+android:text="Find new friends"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ff666666"
+android:layout_x="60px"
+android:layout_y="102px"
+>
+</Button>
+<TextView
+android:id="@+id/running_label"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:visibility="invisible"
+android:text="Service is running:"
+android:layout_x="100px"
+android:layout_y="332px"
+>
+</TextView>
+<Button
+android:id="@+id/stop_button"
+android:layout_width="144px"
+android:layout_height="wrap_content"
+android:visibility="invisible"
+android:text="Stop service"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ffff3333"
+android:layout_x="90px"
+android:layout_y="362px"
+>
+</Button>
+<TextView
+android:id="@+id/not_running_label"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Service is not running:"
+android:layout_x="90px"
+android:layout_y="342px"
+>
+</TextView>
+<Button
+android:id="@+id/start_button"
+android:layout_width="144px"
+android:layout_height="wrap_content"
+android:text="Start service"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ff33cc00"
+android:layout_x="90px"
+android:layout_y="362px"
+>
+</Button>
+<Button
+android:id="@+id/modify_parameters"
+android:layout_width="190px"
+android:layout_height="wrap_content"
+android:text="View/Modify my data"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ff666666"
+android:layout_x="60px"
+android:layout_y="32px"
+>
+</Button>
+<Button
+android:id="@+id/add_one_friend"
+android:layout_width="190px"
+android:layout_height="wrap_content"
+android:text="Add a friend"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ff666666"
+android:layout_x="60px"
+android:layout_y="172px"
+>
+</Button>
+<Button
+android:id="@+id/add_location"
+android:layout_width="190px"
+android:layout_height="wrap_content"
+android:text="View/Add a location"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ff666666"
+android:layout_x="60px"
+android:layout_y="242px"
+>
+</Button>
+</AbsoluteLayout>
