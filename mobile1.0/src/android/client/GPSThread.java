@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.DeadObjectException;
 import android.os.RemoteException;
 import android.util.Log;
 import java.lang.Math;
