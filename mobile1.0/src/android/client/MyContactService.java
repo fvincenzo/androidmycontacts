@@ -19,6 +19,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.DeadObjectException;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.Contacts;
 import android.provider.Contacts.ContactMethods;
@@ -440,298 +441,298 @@ public class MyContactService extends Service {
 		@Override
 		public boolean insertContact(String friend) throws DeadObjectException {
 
-			List<String> info = getUserDetails(friend);
-			String name_s = info.get(0);
-			String mobile_s = info.get(1);
-			String home_s = info.get(2);
-			String work_s = info.get(3);
-			String email_s = info.get(4);
-			String im_s = info.get(5);
-			String pos_s = info.get(6);
-
-
-			Integer person_id = null;
-
-			Cursor personId = getContentResolver().query(Contacts.People.CONTENT_URI, new String[] { BaseColumns._ID },  "name='"+name_s+"'", null, null);
-			while (personId.moveToNext()){
-
-				Cursor curPersonId = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, new String[] { Contacts.ContactMethods.PERSON_ID },  "person="+personId.getInt(personId.getColumnIndex(BaseColumns._ID))+" AND kind="+500, null, null);
-				if (curPersonId.moveToNext()) {
-					person_id = curPersonId.getInt(curPersonId.getColumnIndex(Contacts.ContactMethods.PERSON_ID));
-					break;
-				}
-			}
-
-			if (person_id != null ){
-
-				String projection[] = {
-						BaseColumns._ID,
-						Contacts.Phones.NUMBER
-				};
-				Cursor c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.MOBILE_TYPE+" AND person="+person_id, null, null);
-				if (c.moveToNext()){
-					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), mobile_s);
-					c.commitUpdates();
-				}
-
-				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.HOME_TYPE+" AND person="+person_id, null, null);
-				if (c.moveToNext()){
-					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), home_s);
-					c.commitUpdates();
-				}
-
-				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.WORK_TYPE+" AND person="+person_id, null, null);
-				if (c.moveToNext()){
-					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), work_s);
-					c.commitUpdates();
-				}
-
-				String projection2[] = {
-						BaseColumns._ID,
-						Contacts.ContactMethods.DATA
-				};
-				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "label='Mail' AND person="+person_id, null, null);
-				if (c.moveToNext()){
-					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), email_s);
-					c.commitUpdates();
-				}
-
-				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "label='Messenger' AND person="+person_id, null, null);
-				if (c.moveToNext()){
-					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), im_s);
-					c.commitUpdates();
-				}
-
-				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "kind="+ContactMethods.POSTAL_KIND+" AND person="+person_id, null, null);
-				if (c.moveToNext()){
-					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), pos_s);
-					c.commitUpdates();
-				}
+//			List<String> info = getUserDetails(friend);
+//			String name_s = info.get(0);
+//			String mobile_s = info.get(1);
+//			String home_s = info.get(2);
+//			String work_s = info.get(3);
+//			String email_s = info.get(4);
+//			String im_s = info.get(5);
+//			String pos_s = info.get(6);
+//
+//
+//			Integer person_id = null;
+//
+//			Cursor personId = getContentResolver().query(Contacts.People.CONTENT_URI, new String[] { BaseColumns._ID },  "name='"+name_s+"'", null, null);
+//			while (personId.moveToNext()){
+//
+//				Cursor curPersonId = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, new String[] { Contacts.ContactMethods.PERSON_ID },  "person="+personId.getInt(personId.getColumnIndex(BaseColumns._ID))+" AND kind="+500, null, null);
+//				if (curPersonId.moveToNext()) {
+//					person_id = curPersonId.getInt(curPersonId.getColumnIndex(Contacts.ContactMethods.PERSON_ID));
+//					break;
+//				}
+//			}
+//
+//			if (person_id != null ){
+//
+//				String projection[] = {
+//						BaseColumns._ID,
+//						Contacts.Phones.NUMBER
+//				};
+//				Cursor c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.MOBILE_TYPE+" AND person="+person_id, null, null);
+//				if (c.moveToNext()){
+//					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), mobile_s);
+//					c.commitUpdates();
+//				}
+//
+//				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.HOME_TYPE+" AND person="+person_id, null, null);
+//				if (c.moveToNext()){
+//					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), home_s);
+//					c.commitUpdates();
+//				}
+//
+//				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.WORK_TYPE+" AND person="+person_id, null, null);
+//				if (c.moveToNext()){
+//					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), work_s);
+//					c.commitUpdates();
+//				}
+//
+//				String projection2[] = {
+//						BaseColumns._ID,
+//						Contacts.ContactMethods.DATA
+//				};
+//				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "label='Mail' AND person="+person_id, null, null);
+//				if (c.moveToNext()){
+//					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), email_s);
+//					c.commitUpdates();
+//				}
+//
+//				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "label='Messenger' AND person="+person_id, null, null);
+//				if (c.moveToNext()){
+//					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), im_s);
+//					c.commitUpdates();
+//				}
+//
+//				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "kind="+ContactMethods.POSTAL_KIND+" AND person="+person_id, null, null);
+//				if (c.moveToNext()){
+//					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), pos_s);
+//					c.commitUpdates();
+//				}
+//				return true;
+//			}
+//			else {
+//
+//				ContentValues person = new ContentValues();
+//				person.put(Contacts.People.NAME, name_s);
+//				Uri newPerson = getContentResolver().insert(
+//						Contacts.People.CONTENT_URI, person);
+//				if (newPerson != null) {
+//					List<String> pathList = newPerson.getPathSegments();
+//					String pathLeaf = pathList.get(pathList.size() - 1);
+//					ContentValues number = new ContentValues();
+//					number.put(Contacts.Phones.PERSON_ID, pathLeaf);
+//					number.put(Contacts.Phones.NUMBER, mobile_s);
+//					number.put(Contacts.Phones.TYPE, Contacts.Phones.TYPE_MOBILE);
+//					Uri phoneUpdate = getContentResolver().insert(
+//							Contacts.Phones.CONTENT_URI, number);
+//					if (phoneUpdate == null) {
+//						return false;
+//					}
+//					number = new ContentValues();
+//					number.put(Contacts.Phones.PERSON_ID, pathLeaf);
+//					number.put(Contacts.Phones.NUMBER, work_s);
+//					number.put(Contacts.Phones.TYPE, Contacts.Phones.TYPE_WORK);
+//					phoneUpdate = getContentResolver().insert(
+//							Contacts.Phones.CONTENT_URI, number);
+//					if (phoneUpdate == null) {
+//						return false;
+//					}
+//					number = new ContentValues();
+//					number.put(Contacts.Phones.PERSON_ID, pathLeaf);
+//					number.put(Contacts.Phones.NUMBER, home_s);
+//					number.put(Contacts.Phones.TYPE, Contacts.Phones.TYPE_HOME);
+//					phoneUpdate = getContentResolver().insert(
+//							Contacts.Phones.CONTENT_URI, number);
+//					if (phoneUpdate == null) {
+//						return false;
+//					}
+//					ContentValues email = new ContentValues();
+//					email.put(Contacts.ContactMethods.PERSON_ID, pathLeaf);
+//					email.put(Contacts.ContactMethods.KIND,
+//							Contacts.ContactMethods.CONTENT_EMAIL_TYPE);
+//					email.put(Contacts.ContactMethods.DATA, email_s);
+//					email.put(Contacts.ContactMethods.TYPE,
+//							Contacts.ContactMethods.CONTENT_EMAIL_ITEM_TYPE);
+//					email.put(Contacts.ContactMethods.LABEL, "Mail");
+//					Uri emailUpdate = getContentResolver().insert(
+//							Uri.withAppendedPath(newPerson,
+//									Contacts.ContactMethods.CONTENT_URI.getPath()
+//									.substring(1)), email);
+//					if (emailUpdate == null) {
+//						return false;
+//					}
+//					ContentValues im = new ContentValues();
+//					im.put(Contacts.ContactMethods.PERSON_ID, pathLeaf);
+//					im.put(Contacts.ContactMethods.KIND,
+//							Contacts.ContactMethods.CONTENT_EMAIL_TYPE);
+//					im.put(Contacts.ContactMethods.DATA, im_s);
+//					im.put(Contacts.ContactMethods.TYPE,
+//							Contacts.ContactMethods.CONTENT_EMAIL_ITEM_TYPE);
+//					im.put(Contacts.ContactMethods.LABEL, "Messenger");
+//					Uri imUpdate = getContentResolver().insert(
+//							Uri.withAppendedPath(newPerson,
+//									Contacts.ContactMethods.CONTENT_URI.getPath()
+//									.substring(1)), im);
+//					if (imUpdate == null) {
+//						return false;
+//					}
+//					ContentValues geo = new ContentValues();
+//					geo.put(Contacts.ContactMethods.PERSON_ID, pathLeaf);
+//					geo.put(Contacts.ContactMethods.KIND,
+//							Contacts.ContactMethods.CONTENT_POSTAL_TYPE);
+//					geo.put(Contacts.ContactMethods.DATA, pos_s);
+//					geo.put(Contacts.ContactMethods.TYPE,
+//							Contacts.ContactMethods.CONTENT_POSTAL_ITEM_TYPE);
+//					geo.put(Contacts.ContactMethods.LABEL, "Current Position");
+//					Uri geoUpdate = getContentResolver().insert(
+//							Uri.withAppendedPath(newPerson,
+//									Contacts.ContactMethods.CONTENT_URI.getPath()
+//									.substring(1)), geo);
+//					if (geoUpdate == null) {
+//						return false;
+//					}
+//					ContentValues myContact = new ContentValues();
+//					myContact.put(Contacts.ContactMethods.KIND, 500);
+//					Uri flag = getContentResolver().insert(
+//							Uri.withAppendedPath(newPerson,
+//									Contacts.ContactMethods.CONTENT_URI.getPath()
+//									.substring(1)), myContact);
+//					if (flag == null) {
+//						return false;
+//					}
+//
+//				}
 				return true;
-			}
-			else {
-
-				ContentValues person = new ContentValues();
-				person.put(Contacts.People.NAME, name_s);
-				Uri newPerson = getContentResolver().insert(
-						Contacts.People.CONTENT_URI, person);
-				if (newPerson != null) {
-					List<String> pathList = newPerson.getPathSegments();
-					String pathLeaf = pathList.get(pathList.size() - 1);
-					ContentValues number = new ContentValues();
-					number.put(Contacts.Phones.PERSON_ID, pathLeaf);
-					number.put(Contacts.Phones.NUMBER, mobile_s);
-					number.put(Contacts.Phones.TYPE, Contacts.Phones.MOBILE_TYPE);
-					Uri phoneUpdate = getContentResolver().insert(
-							Contacts.Phones.CONTENT_URI, number);
-					if (phoneUpdate == null) {
-						return false;
-					}
-					number = new ContentValues();
-					number.put(Contacts.Phones.PERSON_ID, pathLeaf);
-					number.put(Contacts.Phones.NUMBER, work_s);
-					number.put(Contacts.Phones.TYPE, Contacts.Phones.WORK_TYPE);
-					phoneUpdate = getContentResolver().insert(
-							Contacts.Phones.CONTENT_URI, number);
-					if (phoneUpdate == null) {
-						return false;
-					}
-					number = new ContentValues();
-					number.put(Contacts.Phones.PERSON_ID, pathLeaf);
-					number.put(Contacts.Phones.NUMBER, home_s);
-					number.put(Contacts.Phones.TYPE, Contacts.Phones.HOME_TYPE);
-					phoneUpdate = getContentResolver().insert(
-							Contacts.Phones.CONTENT_URI, number);
-					if (phoneUpdate == null) {
-						return false;
-					}
-					ContentValues email = new ContentValues();
-					email.put(Contacts.ContactMethods.PERSON_ID, pathLeaf);
-					email.put(Contacts.ContactMethods.KIND,
-							Contacts.ContactMethods.EMAIL_KIND);
-					email.put(Contacts.ContactMethods.DATA, email_s);
-					email.put(Contacts.ContactMethods.TYPE,
-							Contacts.ContactMethods.EMAIL_KIND_OTHER_TYPE);
-					email.put(Contacts.ContactMethods.LABEL, "Mail");
-					Uri emailUpdate = getContentResolver().insert(
-							Uri.withAppendedPath(newPerson,
-									Contacts.ContactMethods.CONTENT_URI.getPath()
-									.substring(1)), email);
-					if (emailUpdate == null) {
-						return false;
-					}
-					ContentValues im = new ContentValues();
-					im.put(Contacts.ContactMethods.PERSON_ID, pathLeaf);
-					im.put(Contacts.ContactMethods.KIND,
-							Contacts.ContactMethods.EMAIL_KIND);
-					im.put(Contacts.ContactMethods.DATA, im_s);
-					im.put(Contacts.ContactMethods.TYPE,
-							Contacts.ContactMethods.EMAIL_KIND_OTHER_TYPE);
-					im.put(Contacts.ContactMethods.LABEL, "Messenger");
-					Uri imUpdate = getContentResolver().insert(
-							Uri.withAppendedPath(newPerson,
-									Contacts.ContactMethods.CONTENT_URI.getPath()
-									.substring(1)), im);
-					if (imUpdate == null) {
-						return false;
-					}
-					ContentValues geo = new ContentValues();
-					geo.put(Contacts.ContactMethods.PERSON_ID, pathLeaf);
-					geo.put(Contacts.ContactMethods.KIND,
-							Contacts.ContactMethods.POSTAL_KIND);
-					geo.put(Contacts.ContactMethods.DATA, pos_s);
-					geo.put(Contacts.ContactMethods.TYPE,
-							Contacts.ContactMethods.POSTAL_KIND_OTHER_TYPE);
-					geo.put(Contacts.ContactMethods.LABEL, "Current Position");
-					Uri geoUpdate = getContentResolver().insert(
-							Uri.withAppendedPath(newPerson,
-									Contacts.ContactMethods.CONTENT_URI.getPath()
-									.substring(1)), geo);
-					if (geoUpdate == null) {
-						return false;
-					}
-					ContentValues myContact = new ContentValues();
-					myContact.put(Contacts.ContactMethods.KIND, 500);
-					Uri flag = getContentResolver().insert(
-							Uri.withAppendedPath(newPerson,
-									Contacts.ContactMethods.CONTENT_URI.getPath()
-									.substring(1)), myContact);
-					if (flag == null) {
-						return false;
-					}
-
-				}
-				return true;
-			}
+//			}
 		}
 
 
 
 		@Override
 		public boolean setHome(String contact) throws DeadObjectException {
-			Log.v("MyContactService", "Sono in setHome");
-			String[] projection = new String[] {
-					android.provider.BaseColumns._ID,
-					android.provider.Contacts.People.NOTES,
-					android.provider.Contacts.People.PREFERRED_PHONE_ID,
-					android.provider.Contacts.People.PREFERRED_EMAIL_ID
-			};
-			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.moveToNext()){
-				String[] projection2 = new String[] {
-						android.provider.BaseColumns._ID
-				};
-				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
-				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.HOME_TYPE+"'", null, null);
-				if (tel.moveToNext()){
-					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
-					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
-					return user.commitUpdates();
-				}
-			}
+//			Log.v("MyContactService", "Sono in setHome");
+//			String[] projection = new String[] {
+//					android.provider.BaseColumns._ID,
+//					android.provider.Contacts.People.NOTES,
+//					android.provider.Contacts.People.PRIMARY_PHONE_ID,
+//					android.provider.Contacts.People.PRIMARY_EMAIL_ID
+//			};
+//			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
+//			if (user.moveToNext()){
+//				String[] projection2 = new String[] {
+//						android.provider.BaseColumns._ID
+//				};
+//				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
+//				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.TYPE_HOME+"'", null, null);
+//				if (tel.moveToNext()){
+//					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
+//					user.updateInt(user.getColumnIndex(Contacts.People.PRIMARY_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
+//					return user.commitUpdates();
+//				}
+//			}
 			return false;
 
 		}
 
 		@Override
 		public boolean setMobile(String contact) throws DeadObjectException {
-			Log.v("MyContactService", "Sono in setMobile");
-			String[] projection = new String[] {
-					android.provider.BaseColumns._ID,
-					android.provider.Contacts.People.NOTES,
-					android.provider.Contacts.People.PREFERRED_PHONE_ID,
-					android.provider.Contacts.People.PREFERRED_EMAIL_ID
-			};
-			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.moveToNext()){
-				String[] projection2 = new String[] {
-						android.provider.BaseColumns._ID
-				};
-				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
-				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.MOBILE_TYPE+"'", null, null);
-				if (tel.moveToNext()){
-					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
-					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
-					return user.commitUpdates();
-				}
-			}
+//			Log.v("MyContactService", "Sono in setMobile");
+//			String[] projection = new String[] {
+//					android.provider.BaseColumns._ID,
+//					android.provider.Contacts.People.NOTES,
+//					android.provider.Contacts.People.PRIMARY_PHONE_ID,
+//					android.provider.Contacts.People.PRIMARY_EMAIL_ID
+//			};
+//			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
+//			if (user.moveToNext()){
+//				String[] projection2 = new String[] {
+//						android.provider.BaseColumns._ID
+//				};
+//				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
+//				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.TYPE_MOBILE+"'", null, null);
+//				if (tel.moveToNext()){
+//					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
+//					user.updateInt(user.getColumnIndex(Contacts.People.PRIMARY_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
+//					return user.commitUpdates();
+//				}
+//			}
 			return false;
 		}
 
 		@Override
 		public boolean setWork(String contact) throws DeadObjectException {
-			Log.v("MyContactService", "Sono in setWork");
-			String[] projection = new String[] {
-					android.provider.BaseColumns._ID,
-					android.provider.Contacts.People.NOTES,
-					android.provider.Contacts.People.PREFERRED_PHONE_ID,
-					android.provider.Contacts.People.PREFERRED_EMAIL_ID
-			};
-			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.moveToNext()){
-				String[] projection2 = new String[] {
-						android.provider.BaseColumns._ID
-				};
-				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
-				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.WORK_TYPE+"'", null, null);
-				if (tel.moveToNext()){
-					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
-					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
-					return user.commitUpdates();
-				}
-			}
+//			Log.v("MyContactService", "Sono in setWork");
+//			String[] projection = new String[] {
+//					android.provider.BaseColumns._ID,
+//					android.provider.Contacts.People.NOTES,
+//					android.provider.Contacts.People.PRIMARY_PHONE_ID,
+//					android.provider.Contacts.People.PRIMARY_EMAIL_ID
+//			};
+//			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
+//			if (user.moveToNext()){
+//				String[] projection2 = new String[] {
+//						android.provider.BaseColumns._ID
+//				};
+//				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
+//				Cursor tel = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection2, "person='"+person_id+"' AND type='"+Contacts.Phones.TYPE_WORK+"'", null, null);
+//				if (tel.moveToNext()){
+//					user.updateToNull(user.getColumnIndex(Contacts.People.NOTES));
+//					user.updateInt(user.getColumnIndex(Contacts.People.PRIMARY_PHONE_ID), tel.getInt(tel.getColumnIndex(BaseColumns._ID)));
+//					return user.commitUpdates();
+//				}
+//			}
 			return false;
 		}
 
 		public boolean setIm(String contact) throws DeadObjectException {
-			String[] projection = new String[] {
-					android.provider.BaseColumns._ID,
-					android.provider.Contacts.People.NOTES,
-					android.provider.Contacts.People.PREFERRED_PHONE_ID,
-					android.provider.Contacts.People.PREFERRED_EMAIL_ID
-			};
-			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.moveToNext()){
-				String[] projection2 = new String[] {
-						android.provider.BaseColumns._ID
-				};
-				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
-				Cursor mail = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND label='Messenger'", null, null);
-				if (mail.moveToNext()){
-					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_EMAIL_ID), mail.getInt(mail.getColumnIndex(BaseColumns._ID)));
-					user.updateString(user.getColumnIndex(Contacts.People.NOTES), "Best contact with IM");
-
-					user.updateToNull(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID));
-
-					return user.commitUpdates();
-				}
-			}
+//			String[] projection = new String[] {
+//					android.provider.BaseColumns._ID,
+//					android.provider.Contacts.People.NOTES,
+//					android.provider.Contacts.People.PRIMARY_PHONE_ID,
+//					android.provider.Contacts.People.PRIMARY_EMAIL_ID
+//			};
+//			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
+//			if (user.moveToNext()){
+//				String[] projection2 = new String[] {
+//						android.provider.BaseColumns._ID
+//				};
+//				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
+//				Cursor mail = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND label='Messenger'", null, null);
+//				if (mail.moveToNext()){
+//					user.updateInt(user.getColumnIndex(Contacts.People.PRIMARY_EMAIL_ID), mail.getInt(mail.getColumnIndex(BaseColumns._ID)));
+//					user.updateString(user.getColumnIndex(Contacts.People.NOTES), "Best contact with IM");
+//
+//					user.updateToNull(user.getColumnIndex(Contacts.People.PRIMARY_PHONE_ID));
+//
+//					return user.commitUpdates();
+//				}
+//			}
 			return false;
 		}
 
 		public boolean setMail(String contact) throws DeadObjectException {
-			String[] projection = new String[] {
-					android.provider.BaseColumns._ID,
-					android.provider.Contacts.People.NOTES,
-					android.provider.Contacts.People.PREFERRED_PHONE_ID,
-					android.provider.Contacts.People.PREFERRED_EMAIL_ID
-			};
-			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.moveToNext()){
-				String[] projection2 = new String[] {
-						android.provider.BaseColumns._ID
-				};
-				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
-				Cursor mail = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND label='Mail'", null, null);
-				if (mail.moveToNext()){
-					user.updateInt(user.getColumnIndex(Contacts.People.PREFERRED_EMAIL_ID), mail.getInt(mail.getColumnIndex(BaseColumns._ID)));
-					user.updateString(user.getColumnIndex(Contacts.People.NOTES), "Best contact with email");
-
-					user.updateToNull(user.getColumnIndex(Contacts.People.PREFERRED_PHONE_ID));
-
-					return user.commitUpdates();
-				}
-			}
+//			String[] projection = new String[] {
+//					android.provider.BaseColumns._ID,
+//					android.provider.Contacts.People.NOTES,
+//					android.provider.Contacts.People.PRIMARY_PHONE_ID,
+//					android.provider.Contacts.People.PRIMARY_EMAIL_ID
+//			};
+//			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
+//			if (user.moveToNext()){
+//				String[] projection2 = new String[] {
+//						android.provider.BaseColumns._ID
+//				};
+//				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
+//				Cursor mail = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND label='Mail'", null, null);
+//				if (mail.moveToNext()){
+//					user.updateInt(user.getColumnIndex(Contacts.People.PRIMARY_EMAIL_ID), mail.getInt(mail.getColumnIndex(BaseColumns._ID)));
+//					user.updateString(user.getColumnIndex(Contacts.People.NOTES), "Best contact with email");
+//
+//					user.updateToNull(user.getColumnIndex(Contacts.People.PRIMARY_PHONE_ID));
+//
+//					return user.commitUpdates();
+//				}
+//			}
 			return false;
 		}
 
@@ -770,29 +771,29 @@ public class MyContactService extends Service {
 		}
 
 		public boolean setPosition(String contact, String position) throws DeadObjectException {
-			String[] projection = new String[] {
-					android.provider.BaseColumns._ID
-			};
-			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
-			if (user.moveToNext()){
-				String[] projection2 = new String[] {
-						android.provider.BaseColumns._ID,
-						android.provider.Contacts.ContactMethods.DATA
-				};
-				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
-				Cursor geo = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND kind="+Contacts.ContactMethods.POSTAL_KIND, null, null);
-				if (geo.moveToNext()){
-					geo.updateString(geo.getColumnIndex(Contacts.ContactMethods.DATA), position);
-					return geo.commitUpdates();
-				}
-			}
+//			String[] projection = new String[] {
+//					android.provider.BaseColumns._ID
+//			};
+//			Cursor user = getContentResolver().query(Contacts.People.CONTENT_URI, projection, "name='"+contact+"'", null, null);
+//			if (user.moveToNext()){
+//				String[] projection2 = new String[] {
+//						android.provider.BaseColumns._ID,
+//						android.provider.Contacts.ContactMethods.DATA
+//				};
+//				int person_id = user.getInt(user.getColumnIndex(android.provider.BaseColumns._ID));
+//				Cursor geo = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "person='"+person_id+"' AND kind="+Contacts.ContactMethods.CONTENT_POSTAL_TYPE, null, null);
+//				if (geo.moveToNext()){
+//					geo.updateString(geo.getColumnIndex(Contacts.ContactMethods.DATA), position);
+//					return geo.commitUpdates();
+//				}
+//			}
 			return false;
 
 		}
 	};
 
 	@Override
-	protected void onCreate() {
+	public void onCreate() {
 
 
 
@@ -803,7 +804,7 @@ public class MyContactService extends Service {
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		// Cancel the persistent notification.
 		mNM.cancel(R.string.local_service_started);
 
@@ -811,7 +812,7 @@ public class MyContactService extends Service {
 		// Tell the user we stopped.
 		try {
 			mBinder.stop(null);
-		} catch (DeadObjectException e) {
+		} catch (RemoteException e) {
 
 		}
 		Toast.makeText(this, R.string.local_service_stopped, Toast.LENGTH_SHORT).show();
@@ -847,7 +848,7 @@ public class MyContactService extends Service {
 		// we use a string id because it is a unique
 		// number.  we use it later to cancel the
 		// notification
-		not = new Notification(
+		not = CNotification.notifier(
 				this,                        // our context
 				R.drawable.small_icon_active,      // the icon for the status bar
 				text,                        // the text to display in the ticker
@@ -877,7 +878,7 @@ public class MyContactService extends Service {
 		// we use a string id because it is a unique
 		// number.  we use it later to cancel the
 		// notification
-		not = new Notification(
+		not = CNotification.notifier(
 				this,                        // our context
 				R.drawable.small_icon_inactive,      // the icon for the status bar
 				text,                        // the text to display in the ticker
@@ -906,7 +907,7 @@ public class MyContactService extends Service {
 		// we use a string id because it is a unique
 		// number.  we use it later to cancel the
 		// notification
-		not = new Notification(
+		not = CNotification.notifier(
 				this,                        // our context
 				R.drawable.small_icon_notification,      // the icon for the status bar
 				text,                        // the text to display in the ticker
@@ -935,7 +936,7 @@ public class MyContactService extends Service {
 		// we use a string id because it is a unique
 		// number.  we use it later to cancel the
 		// notification
-		not = new Notification(
+		not = CNotification.notifier(
 				this,                        // our context
 				R.drawable.small_icon_active,      // the icon for the status bar
 				text,                        // the text to display in the ticker
