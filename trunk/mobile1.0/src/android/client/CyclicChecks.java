@@ -2,7 +2,6 @@ package android.client;
 
 import java.util.HashMap;
 import java.util.Map;
-import android.os.DeadObjectException;
 import android.os.RemoteException;
 import android.util.Log;
 

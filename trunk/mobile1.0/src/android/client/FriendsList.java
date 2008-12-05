@@ -18,7 +18,6 @@ package android.client;
 
 import java.util.List;
 import java.util.Vector;
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -26,7 +25,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.os.DeadObjectException;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.view.View;
@@ -91,13 +89,13 @@ public class FriendsList extends ListActivity implements OnClickListener, Servic
 			
 			setSelection(position);
 			selected = this.v.get(getSelectedItemPosition()) ;
-			AlertDialog.show(this, "Accept or Deny?", 0, "What do you want to do with:\n"+selected, "ACCEPT",this,"DENY", this, true, null);
+			AlertD.show(this, "Accept or Deny?", 0, "What do you want to do with:\n"+selected, "ACCEPT",this,"DENY", this, true, null);
 		}
 		if (mState == ALL_USERS) {
 
 			setSelection(position);
 			selected = this.v.get(getSelectedItemPosition()) ;
-			AlertDialog.show(this, "Add a friend?", 0, "Do you want "+selected+" in your friends list?", "YES",this,"NO", this, true, null);
+			AlertD.show(this, "Add a friend?", 0, "Do you want "+selected+" in your friends list?", "YES",this,"NO", this, true, null);
 
 		}
 	}
