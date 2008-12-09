@@ -4,18 +4,29 @@ android:id="@+id/widget0"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@drawable/sfondo">
+<ImageView
+android:id="@+id/widget28"
+android:layout_height="63px"
+android:layout_y="24px"
+android:background="@drawable/logo" android:layout_width="218px" android:layout_x="5px">
+</ImageView>
+<AnalogClock
+android:id="@+id/widget29"
+android:layout_width="81px"
+android:layout_height="74px"
+android:layout_x="226px"
+android:layout_y="18px"
 >
+</AnalogClock>
 <Button
 android:id="@+id/findFriends"
-android:layout_width="190px"
 android:layout_height="wrap_content"
 android:text="Find new friends"
 android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ff666666"
-android:layout_x="60px"
-android:layout_y="102px"
->
+android:layout_width="250px" android:layout_x="40px" android:layout_y="167px">
 </Button>
 <TextView
 android:id="@+id/running_label"
@@ -63,38 +74,29 @@ android:layout_y="362px"
 </Button>
 <Button
 android:id="@+id/modify_parameters"
-android:layout_width="190px"
 android:layout_height="wrap_content"
 android:text="View/Modify my data"
 android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ff666666"
-android:layout_x="60px"
-android:layout_y="32px"
->
+android:layout_width="250px" android:layout_x="40px" android:layout_y="107px">
 </Button>
 <Button
 android:id="@+id/add_one_friend"
-android:layout_width="190px"
 android:layout_height="wrap_content"
 android:text="Add a friend"
 android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ff666666"
-android:layout_x="60px"
-android:layout_y="172px"
->
+android:layout_width="250px" android:layout_x="40px" android:layout_y="227px">
 </Button>
 <Button
 android:id="@+id/add_location"
-android:layout_width="190px"
 android:layout_height="wrap_content"
 android:text="View/Add a location"
 android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ff666666"
-android:layout_x="60px"
-android:layout_y="242px"
->
+android:layout_width="250px" android:layout_x="40px" android:layout_y="287px">
 </Button>
 </AbsoluteLayout>

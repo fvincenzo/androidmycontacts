@@ -27,6 +27,7 @@ import android.util.Log;
 import android.widget.Toast;
 import android.client.R;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 /**
  * @author  gabrielknight
@@ -469,19 +470,19 @@ public class MyContactService extends Service {
 //						BaseColumns._ID,
 //						Contacts.Phones.NUMBER
 //				};
-//				Cursor c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.MOBILE_TYPE+" AND person="+person_id, null, null);
+//				Cursor c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.TYPE_MOBILE+" AND person="+person_id, null, null);
 //				if (c.moveToNext()){
 //					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), mobile_s);
 //					c.commitUpdates();
 //				}
 //
-//				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.HOME_TYPE+" AND person="+person_id, null, null);
+//				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.TYPE_HOME+" AND person="+person_id, null, null);
 //				if (c.moveToNext()){
 //					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), home_s);
 //					c.commitUpdates();
 //				}
 //
-//				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.WORK_TYPE+" AND person="+person_id, null, null);
+//				c = getContentResolver().query(Contacts.Phones.CONTENT_URI, projection, "type="+Contacts.Phones.TYPE_WORK+" AND person="+person_id, null, null);
 //				if (c.moveToNext()){
 //					c.updateString(c.getColumnIndex(Contacts.Phones.NUMBER), work_s);
 //					c.commitUpdates();
@@ -503,7 +504,7 @@ public class MyContactService extends Service {
 //					c.commitUpdates();
 //				}
 //
-//				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "kind="+ContactMethods.POSTAL_KIND+" AND person="+person_id, null, null);
+//				c = getContentResolver().query(Contacts.ContactMethods.CONTENT_URI, projection2, "kind="+ContactMethods.CONTENT_POSTAL_TYPE+" AND person="+person_id, null, null);
 //				if (c.moveToNext()){
 //					c.updateString(c.getColumnIndex(Contacts.ContactMethods.DATA), pos_s);
 //					c.commitUpdates();
