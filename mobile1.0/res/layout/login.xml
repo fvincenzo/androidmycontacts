@@ -4,15 +4,27 @@ android:id="@+id/widget30"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@drawable/sfondo">
+<ImageView
+android:id="@+id/widget28"
+android:layout_height="63px"
+android:layout_y="24px"
+android:background="@drawable/logo" android:layout_width="218px" android:layout_x="5px">
+</ImageView>
+<AnalogClock
+android:id="@+id/widget29"
+android:layout_width="81px"
+android:layout_height="74px"
+android:layout_x="226px"
+android:layout_y="18px"
 >
+</AnalogClock>
 <EditText
 android:id="@+id/Username"
 android:layout_width="260px"
 android:layout_height="45px"
 android:textSize="18sp"
-android:layout_x="30px"
-android:layout_y="42px"
->
+android:layout_x="30px" android:layout_y="132px">
 </EditText>
 <Button
 android:id="@+id/Login"
@@ -22,9 +34,7 @@ android:text="Login"
 android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ff666666"
-android:layout_x="30px"
-android:layout_y="232px"
->
+android:layout_x="30px" android:layout_y="292px">
 </Button>
 <Button
 android:id="@+id/Register"
@@ -34,9 +44,7 @@ android:text="Register"
 android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ff666666"
-android:layout_x="190px"
-android:layout_y="232px"
->
+android:layout_x="190px" android:layout_y="292px">
 </Button>
 <EditText
 android:id="@+id/Password"
@@ -45,27 +53,21 @@ android:layout_height="45px"
 android:layout_marginLeft="50px"
 android:textSize="18sp"
 android:password="true"
-android:layout_x="30px"
-android:layout_y="142px"
->
+android:layout_x="30px" android:layout_y="222px">
 </EditText>
 <TextView
 android:id="@+id/widget33"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Insert your username"
-android:layout_x="30px"
-android:layout_y="12px"
->
+android:layout_x="30px" android:layout_y="102px">
 </TextView>
 <TextView
 android:id="@+id/widget34"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Insert your password"
-android:layout_x="30px"
-android:layout_y="112px"
->
+android:layout_x="30px" android:layout_y="192px">
 </TextView>
 <CheckBox
 android:id="@+id/forcelogincheckbox"
@@ -74,8 +76,6 @@ android:layout_height="wrap_content"
 android:text="Force Login"
 android:textStyle="bold"
 android:textColor="#ff2ffd33"
-android:layout_x="96px"
-android:layout_y="307px"
->
+android:layout_x="96px" android:layout_y="367px">
 </CheckBox>
 </AbsoluteLayout>

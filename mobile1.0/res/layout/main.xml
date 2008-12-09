@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@drawable/sfondo">
+<ImageView
+android:id="@+id/widget28"
+android:layout_height="63px"
+android:layout_y="24px"
+android:background="@drawable/logo" android:layout_width="218px" android:layout_x="5px">
+</ImageView>
+<AnalogClock
+android:id="@+id/widget29"
+android:layout_width="81px"
+android:layout_height="74px"
+android:layout_x="226px"
+android:layout_y="18px"
+>
+</AnalogClock>
+<ImageButton
+android:id="@+id/widget30"
+android:layout_width="128px"
+android:layout_height="128px"
+android:background="@drawable/rc" android:layout_x="21px" android:layout_y="115px">
+</ImageButton>
+
+
+<TextView
+android:id="@+id/widget65"
+android:layout_height="29px"
+android:layout_y="100px" android:text="eANDROID DESKTOP" android:layout_width="140px" android:layout_x="90px">
+</TextView>
+<ImageButton android:id="@+id/widget31" android:layout_height="128px" android:layout_width="128px" android:layout_x="171px" android:background="@drawable/anag" android:layout_y="115px"></ImageButton>
+<ImageButton android:id="@+id/widget32" android:layout_height="128px" android:layout_width="128px" android:layout_x="21px" android:background="@drawable/mail" android:layout_y="255px"></ImageButton>
+<ImageButton android:layout_height="128px" android:layout_width="128px" android:layout_x="171px" android:id="@+id/widget33" android:background="@drawable/users" android:layout_y="255px"></ImageButton>
+
+
+
+</AbsoluteLayout>
