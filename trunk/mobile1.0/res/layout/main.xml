@@ -30,7 +30,7 @@ android:background="@drawable/rc" android:layout_x="21px" android:layout_y="115p
 <TextView
 android:id="@+id/widget65"
 android:layout_height="29px"
-android:layout_y="100px" android:text="eANDROID DESKTOP" android:layout_width="140px" android:layout_x="90px">
+android:text="ANDROID eDESKTOP CLIENT" android:layout_width="190px" android:layout_x="65px" android:layout_y="95px">
 </TextView>
 <ImageButton android:id="@+id/widget31" android:layout_height="128px" android:layout_width="128px" android:layout_x="171px" android:background="@drawable/anag" android:layout_y="115px"></ImageButton>
 <ImageButton android:id="@+id/widget32" android:layout_height="128px" android:layout_width="128px" android:layout_x="21px" android:background="@drawable/mail" android:layout_y="255px"></ImageButton>
