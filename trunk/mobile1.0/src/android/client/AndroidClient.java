@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class AndroidSES extends Activity {
+public class AndroidClient extends Activity {
 
 	private ImageButton rc;
 	private ImageButton rc1;
@@ -37,7 +37,7 @@ public class AndroidSES extends Activity {
 		rc1.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View view) {
-				Intent i = new Intent(AndroidSES.this, MyContatsClient.class);
+				Intent i = new Intent(AndroidClient.this, MyContatsClient.class);
 				startActivity(i);
 			}
 

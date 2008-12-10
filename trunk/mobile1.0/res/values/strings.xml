@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Contacts</string>
+    <string name="app_name">Android eDesktop Client</string>
     <string name="title_pending_friends">Pending Friends List</string>
     <string name="all_users">System users</string>
     <string name="title_register">Register</string>
