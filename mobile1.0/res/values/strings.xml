@@ -14,4 +14,10 @@
     <string name="view_locations_title">Locations currently inserted:</string>
     <string name="map_overlay_own_name">Me</string> 
     
+    <string name="startserv">Start News service</string>
+    <string name="stopserv">Stop News service</string>
+    <string name="invokeserv">News counter</string>
+    <string name="default_result">N/A</string>
+    <string name="servicestatus">Service status: N/A</string>
+    
 </resources>
