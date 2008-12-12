@@ -58,9 +58,8 @@ public class AndroidClient extends Activity {
 
 		rc3.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				Intent myIntent = new Intent("android.intent.action.VIEW", Uri
-						.parse("http://www.libero.it"));
-				startActivity(myIntent);
+				Intent i = new Intent(AndroidClient.this, News.class);
+				startActivity(i);
 			}
 
 		});

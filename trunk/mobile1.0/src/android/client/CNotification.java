@@ -13,7 +13,7 @@ public class CNotification {
 		
 		contentIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		
-		PendingIntent pi = PendingIntent.getActivity(context, 0, contentIntent, android.app.PendingIntent.FLAG_ONE_SHOT);
+		PendingIntent pi = PendingIntent.getActivity(context, 0, contentIntent, android.app.PendingIntent.FLAG_CANCEL_CURRENT);
 		
 		n.setLatestEventInfo(context, expandedTitle, expandedText, pi);
 

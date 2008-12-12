@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AbsoluteLayout android:id="@+id/widget0"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/sfondo">
+	<ImageView android:id="@+id/widget28" android:layout_height="63px"
+		android:layout_y="24px" android:background="@drawable/logo"
+		android:layout_width="218px" android:layout_x="5px">
+	</ImageView>
+	<AnalogClock android:id="@+id/widget29"
+		android:layout_width="81px" android:layout_height="74px"
+		android:layout_x="226px" android:layout_y="18px">
+	</AnalogClock>
+	<Button android:id="@+id/startservice" android:text="@string/startserv"
+		android:layout_width="200px" android:layout_height="40px" android:layout_x="60px" android:layout_y="220px"/>
+	<Button android:id="@+id/stopservice" android:text="@string/stopserv"
+		android:layout_height="40px" android:layout_width="200px" android:layout_x="60px" android:layout_y="265px"/>
+	
+	
+	<Button android:id="@+id/invokeservice" android:text="@string/invokeserv"
+		android:layout_height="40px" android:layout_width="200px" android:layout_x="60px" android:layout_y="310px"/>
+	<TextView android:id="@+id/result" android:text="@string/default_result" android:layout_width="180px" android:layout_x="70px" android:layout_height="20px" android:layout_y="365px"/>
+	<TextView android:id="@+id/servicestatus"
+		android:text="@string/servicestatus" android:layout_x="70px" android:layout_height="20px" android:layout_y="390px" android:layout_width="210px"/>
+<TextView android:id="@+id/TextView01" android:layout_height="20px" android:layout_y="100px" android:text="News Service Configurator" android:layout_width="170px" android:layout_x="75px"></TextView>
+
+
+<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_x="124px" android:layout_y="130px" android:background="@drawable/news_icon2" android:id="@+id/opensite"></ImageButton>
+</AbsoluteLayout>
