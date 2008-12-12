@@ -35,7 +35,6 @@ public class WSInvoke {
 
 		} catch (Exception aE) {
 			aE.printStackTrace();
-			;
 		}
 
 		return result0;
