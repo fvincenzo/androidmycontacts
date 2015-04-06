@@ -1,0 +1,1 @@
+An android project aimed to have a better connectivity with friends and to know where to contact them.
